@@ -40,7 +40,7 @@ function App() {
 
   useEffect(()=>{
 
-      localStorage.setItem("Item",JSON.stringify(todos));
+      localStorage.setItem("todos",JSON.stringify(todos));
   },[todos])
 
   return (
@@ -52,7 +52,7 @@ function App() {
                         {/* Todo form goes here */} 
                         <TodoForm />
                     </div>
-                    <div className="flex flex-wrap gap-y-3">
+                    <div className="flex flex-wrap gap-y-3">  
                         {/*Loop and Add TodoItem here */}
                         {todos.map((todo) => (
                           <div key={todo.id}
