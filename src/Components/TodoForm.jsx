@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useTodoContext } from "../Contexts/TodoContext";
 function TodoForm() {
-
     const [todo,setTodos] = useState("");
-    const {addTdod} = useTodoContext;
+    const {addTodo} = useTodoContext();
     const add = (e)=>{
-        e.preventDefault;
-        addTdod({todo,completed:false})
+        e.preventDefault();
+        if(!todo) return false;
+        addTodo({todo,completed:false})
         setTodos("");
     }
   return (
