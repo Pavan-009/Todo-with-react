@@ -6,6 +6,7 @@ function App() {
 
   const [todos,setTodos] = useState([]);
 
+
   const addTodo = (todo)=>{
     setTodos((prev) => [{id: Date.now(), ...todo}, ...prev] );
   }
@@ -32,7 +33,7 @@ function App() {
 
    if(todos && todos.length){
 
-    setTodos(todos)
+    setTodos(todos) 
 
    }
 

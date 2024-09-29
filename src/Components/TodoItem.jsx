@@ -4,9 +4,8 @@ import { useTodoContext } from "../Contexts/TodoContext";
 function TodoItem({todoItem}) {
     const [isEditable,setIsEditable] = useState(false);
     const [todoMsg,setTodoMsg]  = useState(todoItem.todo);
-    console.log(todoMsg)
     const {strikeOutTask,deleteTodo,updateTodo} = useTodoContext();
-    console.log(todoMsg)
+
     const editTodo = ()=>{
         updateTodo(todoItem.id,{...todoItem,todo: todoMsg});
         setIsEditable(false);
@@ -14,7 +13,6 @@ function TodoItem({todoItem}) {
 
     const strikeOutTaskMark = ()=>{
             strikeOutTask(todoItem.id);
-            console.log(todoItem.id)
     }
   return (
     <div
