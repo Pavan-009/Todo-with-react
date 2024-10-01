@@ -24,7 +24,7 @@ function TodoItem({todoItem}) {
         type="checkbox"
         className="cursor-pointer"
         checked={todoItem.completed}
-        onChange={strikeOutTaskMark}
+        onChange={strikeOutTaskMark}    
     />
     <input
         type="text"
