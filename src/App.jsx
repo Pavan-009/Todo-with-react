@@ -4,30 +4,30 @@ import { TodoProvider } from './Contexts/TodoContext';
 import { TodoForm, TodoItem } from './Components/index';
 function App() {
 
-  const [todos,setTodos] = useState([]);
+  const [todos,setTodos] = useState([]); // using use state.
 
 
-  const addTodo = (todo)=>{
+  const addTodo = (todo)=>{//to add the new todoentry
     setTodos((prev) => [{id: Date.now(), ...todo}, ...prev] );
   }
 
-  const updateTodo = (id,todos)=>{
-    setTodos((prev) => prev.map((prevTodo) => (prevTodo.id === id ? todos : prevTodo )))
+  const updateTodo = (id,todos)=>{//to update the todo entry
+    setTodos((prev) => prev.map((prevTodo) => (prevTodo.id === id ? todos : prevTodo )));
   }
 
-  const deleteTodo = (id)=>{
+  const deleteTodo = (id)=>{//to delete the Todo entry 
     setTodos((prev) => prev.filter((todo) => todo.id !== id))
   }
 
-  const strikeOutTask = (id)=>{
+  const strikeOutTask = (id)=>{//to toggle the completed and uncompleted states for the checbox
     setTodos((prev)=>
       prev.map((prevTodo)=>{
         return(
-        prevTodo.id === id ? {...prevTodo,completed : !prevTodo.completed } : prevTodo)
+        prevTodo.id === id ? {...prevTodo,completed : !prevTodo.completed } : prevTodo);
       })
     )
   }
-  useEffect(()=>{
+  useEffect(()=>{// using useEffect to initial render the application without dependency so fisrt time only it will render
 
     const todos = JSON.parse(localStorage.getItem("todos"));
 
@@ -39,22 +39,20 @@ function App() {
 
   },[]);
 
-  useEffect(()=>{
+  useEffect(()=>{//This useEffect will render the components when the dependency to got changed the state
 
       localStorage.setItem("todos",JSON.stringify(todos));
   },[todos])
 
   return (
-    <TodoProvider value={{todos,addTodo ,deleteTodo,updateTodo,strikeOutTask}}>
+    <TodoProvider value={{todos,addTodo ,deleteTodo,updateTodo,strikeOutTask}}> 
     <div className="bg-[#172842] min-h-screen py-8">
                 <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
                     <h1 className="text-2xl font-bold text-center mb-8 mt-2">Manage Your Todos</h1>
                     <div className="mb-4">
-                        {/* Todo form goes here */} 
                         <TodoForm />
                     </div>
                     <div className="flex flex-wrap gap-y-3">  
-                        {/*Loop and Add TodoItem here */}
                         {todos.map((todo) => (
                           <div key={todo.id}
                           className='w-full'

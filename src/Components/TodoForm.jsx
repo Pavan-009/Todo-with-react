@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useTodoContext } from "../Contexts/TodoContext";
 function TodoForm() {
-    const [todo,setTodos] = useState("");
-    const {addTodo} = useTodoContext();
+    const [todo,setTodos] = useState("");//this state is to give the todo object after adding all the info from input field
+    const {addTodo} = useTodoContext();//add function to return the data to the context .
     const add = (e)=>{
         e.preventDefault();
         if(!todo) return false;

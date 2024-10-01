@@ -2,16 +2,16 @@
 import { useState } from "react";
 import { useTodoContext } from "../Contexts/TodoContext";
 function TodoItem({todoItem}) {
-    const [isEditable,setIsEditable] = useState(false);
-    const [todoMsg,setTodoMsg]  = useState(todoItem.todo);
-    const {strikeOutTask,deleteTodo,updateTodo} = useTodoContext();
+    const [isEditable,setIsEditable] = useState(false);// state for checking the editable or not
+    const [todoMsg,setTodoMsg]  = useState(todoItem.todo);//to do message that we are giving in input field given to state
+    const {strikeOutTask,deleteTodo,updateTodo} = useTodoContext(); // all the usable functions 
 
-    const editTodo = ()=>{
+    const editTodo = ()=>{ // this regurn the todo Object and the state weather it is editable or not
         updateTodo(todoItem.id,{...todoItem,todo: todoMsg});
         setIsEditable(false);
     }
 
-    const strikeOutTaskMark = ()=>{
+    const strikeOutTaskMark = ()=>{ // this gives strikeOut the txt when the task is completed [it is to toggle the checkbox]
             strikeOutTask(todoItem.id);
     }
   return (
@@ -35,7 +35,6 @@ function TodoItem({todoItem}) {
         onChange={(e) => setTodoMsg(e.target.value)}
         readOnly={!isEditable}
     />
-    {/* Edit, Save Button */}
     <button
         className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0 disabled:opacity-50"
         onClick={() => {
@@ -52,7 +51,6 @@ function TodoItem({todoItem}) {
     >
         {isEditable ? "📁" : "✏️"}
     </button>
-    {/* Delete Todo Button */}
     <button
         className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0"
         onClick={() => deleteTodo(todoItem.id)}
